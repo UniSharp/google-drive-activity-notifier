@@ -34,5 +34,6 @@ crontab -e
  * 
 ```
 */5 * * * *  cd ~/google-drive-activity-notifier/ && php GDriveActivityNotifier.php
+
  # Note: replace ~/google-drive-activity-notifier/ to your repository location.
 ```
