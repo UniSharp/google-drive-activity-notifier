@@ -85,10 +85,10 @@ foreach($data['items'] as $item) {
         $title = @$item['file']['title'];
         $selfLink = @$item['file']['selfLink'];
         if ($deleted) {
-            exec("echo 'display notification \"$title 已被刪除\" with title \"已刪除 $title\" subtitle \"\"' | osascript");
+            exec("echo -e 'display notification \"$title 已被刪除\" with title \"已刪除 $title\" subtitle \"\"\\ndelay 2' | osascript");
         }
         else if ($title && $selfLink) {
-            exec("echo 'display notification \"$title 已被更新\" with title \"已更新 $title\" subtitle \"$selfLink\"' | osascript");
+            exec("echo 'display notification \"$title 已被更新\" with title \"已更新 $title\" subtitle \"$selfLink\"\\ndelay 2' | osascript");
         }
     }
 }
