@@ -1,3 +1,6 @@
+### Before starting
+ * This application use applescript, and it was only tested on Mac OSX 10.9
+
 ### Install
  * Clone it
  * 
