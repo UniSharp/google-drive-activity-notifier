@@ -78,6 +78,10 @@ if ($last) {
 }
 file_put_contents('largestChangeId.txt', $data['largestChangeId']);
 
+if (count(@$data['item'])  >= 10) {
+    // skip notification when more than 10 items updated.
+    exit(0);
+}
 
 foreach($data['items'] as $item) {
     if ($item['id'] != $last) {
