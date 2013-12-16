@@ -2,6 +2,9 @@
 require_once 'config.php';
 require_once 'lib/google-api-php-client/src/Google_Client.php';
 require_once 'lib/google-api-php-client/src/contrib/Google_DriveService.php';
+
+$debug = true;
+
 /**
  * Retrieve a list of Change resources.
  *
@@ -78,6 +81,10 @@ if ($last) {
 }
 file_put_contents('largestChangeId.txt', $data['largestChangeId']);
 
+if ($debug) {
+    file_put_contents('debug.data', print_r($data, true));
+}
+
 if (count(@$data['item'])  >= 10) {
     // skip notification when more than 10 items updated.
     exit(0);
@@ -88,11 +95,12 @@ foreach($data['items'] as $item) {
         $deleted = @$item['deleted'];
         $title = @$item['file']['title'];
         $selfLink = @$item['file']['selfLink'];
+        $lastModifyingUserName = @$item['file']['lastModifyingUserName'];
         if ($deleted) {
-            exec("echo -e 'display notification \"$title 已被刪除\" with title \"已刪除 $title\" subtitle \"\"\\ndelay 2' | osascript");
+            exec("echo -e 'display notification \"$title 已被刪除 by $lastModifyingUserName\" with title \"已刪除 $title\" subtitle \"\"\\ndelay 2' | osascript");
         }
         else if ($title && $selfLink) {
-            exec("echo 'display notification \"$title 已被更新\" with title \"已更新 $title\" subtitle \"$selfLink\"\\ndelay 2' | osascript");
+            exec("echo 'display notification \"$title 已被更新 by $lastModifyingUserName\" with title \"已更新 $title\" subtitle \"$selfLink\"\\ndelay 2' | osascript");
         }
     }
 }
