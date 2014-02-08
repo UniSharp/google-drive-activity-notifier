@@ -1,8 +1,8 @@
 ### Before starting
- * This application use applescript, and it was only tested on Mac OSX 10.9
+ * This application use applescript, only tested on Mac OSX 10.9
 
 ### Install
- * Clone it
+ * Clone
  * 
 ```
 cd ~/ && git clone git@github.com:UniSharp/google-drive-activity-notifier.git
